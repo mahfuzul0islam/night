@@ -1,0 +1,3 @@
+<x-dashbord>
+    
+</x-dashbord>
