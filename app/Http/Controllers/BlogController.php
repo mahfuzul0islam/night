@@ -63,4 +63,22 @@ class BlogController extends Controller
         return view('dashbordblog', compact('blogs'));
         
     }
+    public function profile ()
+    {
+        $user = auth()->user();
+        return view("auth.profile",compact('user'));
+    }
+    public function profileupdate(Request $request)
+    {
+        $user = auth()->user();
+        $user->name = $request->name;
+        if ($request->has('image')) {
+            $user->image = $request->image->store('image');
+        }
+        $user->bio = $request->bio;
+        $user->number = $request->number;
+        $user->save();
+        return redirect()->back();
+
+    }
 }

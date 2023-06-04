@@ -6,7 +6,7 @@
                     <div class="card  container">
                         <div class="card-body text-center">
                             <div class="d-flex mx-auto w-100">
-                                <img src="{{ asset('img/profile.jpg') }}" class="mr-4" height="80" alt="">
+                                <img src="{{ Storage::url(auth()->user()->image)}}" class="mr-4" height="80" alt="">
                                 <div class="">
                                     <h3>{{ ucwords(auth()->user()->name) }}</h3>
                                     <p>{{ auth()->user()->email }}</p>
@@ -17,15 +17,11 @@
                         <div class="card-body">
                             <ul>
                                 <li>
-                                    <a href="">Porfile</a>
+                                    <a href="{{route('profile')}}">Porfile</a>
                                 </li>
                                 <hr>
                                 <li>
-                                    <a href="{{route('welcome')}}" class="">Blogs</a>
-                                </li>
-                                <hr>
-                                <li>
-                                    <a href="" class="">Change passord</a>
+                                    <a href="{{route('dashbordblog')}}" class="">Blogs</a>
                                 </li>
                                 <hr>
                                 <li>

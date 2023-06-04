@@ -27,6 +27,8 @@ Route::get('/blog/edit/{id}',[App\Http\Controllers\BlogController::class, 'edit'
 Route::post('/blog/update/{id}',[App\Http\Controllers\BlogController::class, 'update'] )->name('blog.update');
 
 
+Route::get('/profile',[App\Http\Controllers\BlogController::class, 'profile'] )->name('profile');
+Route::post('/profile/update',[App\Http\Controllers\BlogController::class, 'profileupdate'] )->name('profileupdate');
 
 
 
