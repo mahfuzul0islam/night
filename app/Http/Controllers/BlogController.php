@@ -22,12 +22,14 @@ class BlogController extends Controller
         $blog->image = $request->image->store('blog');
         $blog->body = $request->body;
         $blog->category_id = $request->category;
-        $blog->save();  
+        $blog->save();
         return redirect()->back();
     }
-    public function blogs()
+    public function blogs(Request $request)
     {
-        $blogs = Blog::all();
+        $blogs = Blog::when($request->filled('q'), function ($query) use ($request) {
+            $query->where('title', 'LIKE', '%' . $request->q . '%')->orWhere('body', 'LIKE', '%' . $request->q . '%');
+        })->paginate(10);
         return view('welcome', compact('blogs'));
     }
     public function welcome()
@@ -61,12 +63,12 @@ class BlogController extends Controller
     {
         $blogs = Blog::all();
         return view('dashbordblog', compact('blogs'));
-        
+
     }
-    public function profile ()
+    public function profile()
     {
         $user = auth()->user();
-        return view("auth.profile",compact('user'));
+        return view("auth.profile", compact('user'));
     }
     public function profileupdate(Request $request)
     {

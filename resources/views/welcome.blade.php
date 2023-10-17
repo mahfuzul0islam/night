@@ -13,68 +13,51 @@
                         @foreach ($blogs as $blog)
                             <article class="blog_item">
                                 <div class="blog_item_img">
-                                    <img class="card-img rounded-0" src="{{Storage::url($blog->image)}}" alt="">
+                                    <img class="card-img rounded-0" src="{{ Storage::url($blog->image) }}" alt="">
                                     <div href="#" class="blog_item_date">
-                                        <h3>{{$blog->created_at->format('d')}}</h3>
-                                        <p>{{$blog->created_at->format('M')}}</p>
+                                        <h3>{{ $blog->created_at->format('d') }}</h3>
+                                        <p>{{ $blog->created_at->format('M') }}</p>
                                     </div>
                                 </div>
 
                                 <div class="blog_details">
-                                    <a class="d-inline-block" href="{{ route('welcome') }}">
+                                    <a class="d-inline-block" href="{{ route('singleblog', $blog->id) }}">
                                         <h2>{{ $blog->title }}</h2>
                                     </a>
-                                    <p>{{$blog->body}}</p>
+                                    <p>{{ $blog->body }}</p>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i></a></li>
-                                        <li><a href="#">{{$blog->category->title}}</a></li>
+                                        <li><a href="#">{{ $blog->category->title }}</a></li>
                                     </ul>
                                 </div>
                             </article>
                         @endforeach
+                        {{-- main part shes --}}
 
-                            {{-- main part shes --}}
+                        {{ $blogs->links() }}
 
-                        <nav class="blog-pagination justify-content-center d-flex">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Previous">
-                                        <i class="ti-angle-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Next">
-                                        <i class="ti-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
+
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
+                            <form action="{{ url('/') }}" method="GET">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
-                                            onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'">
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'"
+                                            name="q" value="{{ request()->q }}">
                                         <div class="input-group-append">
-                                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                                            <button class="btn" type="submit"><i class="ti-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
                                 <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
                                     type="submit">Search</button>
-                                <a href="{{route('blog.create')}}" class="button rounded-0 mt-3 primary-bg text-white w-100 btn_1 boxed-btn">Create</a>
-                                
+                                <a href="{{ route('blog.create') }}"
+                                    class="button rounded-0 mt-3 primary-bg text-white w-100 btn_1 boxed-btn">Create</a>
+
                             </form>
                         </aside>
 

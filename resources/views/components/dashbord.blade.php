@@ -25,6 +25,10 @@
                                 </li>
                                 <hr>
                                 <li>
+                                    <a href="{{route('blog.create')}}" class="">Blogs Create</a>
+                                </li>
+                                <hr>
+                                <li>
                                     <a href="{{ route('category.index') }}" class="">Categories</a>
                                 </li>
                             </ul>

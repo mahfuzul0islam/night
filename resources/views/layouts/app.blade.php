@@ -84,9 +84,6 @@
         </div>
     </header>
     <!-- header-end -->
-
-
-
     {{ $slot }}
     <!-- footer start -->
 

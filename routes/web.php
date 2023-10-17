@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,22 +19,27 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',[App\Http\Controllers\BlogController::class, 'blogs'] )->name('welcome');
-Route::get('/dashbord/blog',[App\Http\Controllers\BlogController::class, 'dashbordblog'] )->name('dashbordblog');
-Route::get('/blog',[App\Http\Controllers\BlogController::class, 'welcome'] )->name('blog');
-Route::get('/blog/create',[App\Http\Controllers\BlogController::class, 'create'] )->name('blog.create');
-Route::post('/blog/store',[App\Http\Controllers\BlogController::class, 'store'] )->name('blog.store');
-Route::delete('/blog/delete/{id}',[App\Http\Controllers\BlogController::class, 'delete'] )->name('blog.delete');
-Route::get('/blog/edit/{id}',[App\Http\Controllers\BlogController::class, 'edit'] )->name('blog.edit');
-Route::post('/blog/update/{id}',[App\Http\Controllers\BlogController::class, 'update'] )->name('blog.update');
+Route::get('/', [App\Http\Controllers\BlogController::class, 'blogs'])->name('welcome');
+Route::get('/dashbord/blog', [App\Http\Controllers\BlogController::class, 'dashbordblog'])->name('dashbordblog');
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'welcome'])->name('blog');
+Route::get('/blog/create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
+Route::post('/blog/store', [App\Http\Controllers\BlogController::class, 'store'])->name('blog.store');
+Route::delete('/blog/delete/{id}', [App\Http\Controllers\BlogController::class, 'delete'])->name('blog.delete');
+Route::get('/blog/edit/{id}', [App\Http\Controllers\BlogController::class, 'edit'])->name('blog.edit');
+Route::post('/blog/update/{id}', [App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
 
 
-Route::get('/profile',[App\Http\Controllers\BlogController::class, 'profile'] )->name('profile');
-Route::post('/profile/update',[App\Http\Controllers\BlogController::class, 'profileupdate'] )->name('profileupdate');
+Route::get('/profile', [App\Http\Controllers\BlogController::class, 'profile'])->name('profile');
+Route::post('/profile/update', [App\Http\Controllers\BlogController::class, 'profileupdate'])->name('profileupdate');
 
 
 
- //shob category
+Route::get('/single/blog/{id}', [App\Http\Controllers\CommentController::class, 'singleblog'])->name('singleblog');
+Route::post('/blog/{blog}/comment/store/', [App\Http\Controllers\CommentController::class, 'store'])->name('singleblog.store');
+
+
+
+//shob category
 
 Route::get('/dashbord/category/create', function () {
     return view('category.create');
