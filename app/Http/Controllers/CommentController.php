@@ -12,8 +12,6 @@ class CommentController extends Controller
     {
         $blog = Blog::where('id', $id)->withCount('comments')->first();
         $comments = Comment::where('blog_id', $id)->get();
-        $comments = Comment::where('blog_id', $id)->get();
-
         return view('singleblog', compact('blog', "comments"));
     }
     public function store(Request $request, $id)

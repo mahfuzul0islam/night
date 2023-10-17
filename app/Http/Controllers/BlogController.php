@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\View\Components\asidecategory;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class   BlogController extends Controller
 {
     public function create()
     {
@@ -30,7 +31,9 @@ class BlogController extends Controller
         $blogs = Blog::when($request->filled('q'), function ($query) use ($request) {
             $query->where('title', 'LIKE', '%' . $request->q . '%')->orWhere('body', 'LIKE', '%' . $request->q . '%');
         })->paginate(10);
-        return view('welcome', compact('blogs'));
+        $categories=Category::all();   
+        
+        return view('welcome', compact('blogs','categories'));
     }
     public function welcome()
     {

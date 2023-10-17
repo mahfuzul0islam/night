@@ -57,4 +57,4 @@ Route::post('/dashbord/category/store', [App\Http\Controllers\CategoriesControll
 
 Auth::routes();
 
-Route::get('/dashbord', [App\Http\Controllers\HomeController::class, 'index'])->name('dashbord');
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('dashbord');
